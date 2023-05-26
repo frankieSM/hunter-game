@@ -1,0 +1,24 @@
+
+#titleBanner {
+    background-color: tan;
+    width: 80%;
+    margin: auto;
+    border: 5px solid;
+    border-color: rgb(102, 30, 30);
+    border-radius: 50px;
+}
+
+#gameTitleText {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    color: black;
+    /* TODO: figure out what the hell any of this shadow means 
+    text-shadow: -2px -2px red, 0 0 1em rgb(250, 250, 250), 0 0 0em rgb(201, 186, 186); */
+}
+
+button{
+    background-color: transparent;
+    border-style: hidden;
+    text-align: center;
+}
+
