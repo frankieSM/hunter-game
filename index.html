@@ -7,41 +7,27 @@
     <title>game</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
-  <body background="assets\background1.jpg">
+  <body background="assets\images\background1.jpg">
     <div id="titleBanner">
       <h1 id="gameTitleText">Definitely NOT Duck Hunt</h1>
     </div>
-
-    <nav>
-      <ul>
-        <li>
-          <button id="startButton" name="startButton" type="button">
-            GO HUNTING
-          </button>
-        </li>
-        <li>
-          <button id="rulesButton" name="rulesButton" type="button">
-            RULES
-          </button>
-        </li>
-        <li>
-          <button id="rulesButton" name="rulesButton" type="button">
-            AUDIO???? MAYBE CREDITS ???
-          </button>
-        </li>
-      </ul>
-    </nav>
+    <div class="buttons">
+      <button id="rulesButton" type="button">RULES</button>
+      <button id="startButton" type="button">GO HUNTING</button>
+      <button id="otherButton" type="button">AUDIO????</button>
+    </div>
 
     <script src="script.js"></script>
     <script src="enemies.js"></script>
   </body>
 </html>
 
-<!--TODO: find some mp3, some ogg, and maybe wav of some forest ambiance. 
-    wav is universal but get whatever works.
-    
-    <audio controls>
-    <source src="name.audioType" type="audio/audioType">
-    <source src="name.audioType" type="audio/audioType">
-    Your browser does not support the audio element.
-    </audio> -->
+<!-- TODO: chrome is shit and doesnt autoplay apparently. either create a
+           button to play audio or start learning iframe. 
+  <div>
+  <audio id="forestAmbiance" controls loop autoplay>
+    <source src="../assets/sounds/forest-ambiance.mp3" type="audio/mpeg" />
+  </audio>
+</div>
+
+

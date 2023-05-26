@@ -9,16 +9,25 @@
 }
 
 #gameTitleText {
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: xx-large;
     text-align: center;
-    color: black;
-    /* TODO: figure out what the hell any of this shadow means 
-    text-shadow: -2px -2px red, 0 0 1em rgb(250, 250, 250), 0 0 0em rgb(201, 186, 186); */
+    color: rgb(69, 12, 12);
+    /* TODO: figure out what the hell any of this shadow means */
+    text-shadow: -2px -2px gold, 0 0 1em rgb(250, 250, 250), 0 0 0em rgb(201, 186, 186);
 }
 
-button{
+button {
     background-color: transparent;
     border-style: hidden;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: xx-large;
     text-align: center;
+    color: rgb(69, 12, 12);
+    text-shadow: -2px -2px gold, 0 0 1em rgb(250, 250, 250), 0 0 0em rgb(201, 186, 186);
 }
-
+/*TODO: wow shocking it doesnt work even after resizing it very epic glad i
+        spent time on this*/
+body {
+    cursor: url('../assets/images/aimEDIT.png'), pointer;
+  }
