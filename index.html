@@ -4,30 +4,28 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>game</title>
+    <title>NOT Duck Hunt</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
   <body background="assets\images\background1.jpg">
-    <div id="titleBanner">
-      <h1 id="gameTitleText">Definitely NOT Duck Hunt</h1>
+    <div id="mainMenu">
+      <div id="titleBanner">
+        <h1 id="gameTitleText">Definitely NOT Duck Hunt</h1>
+      </div>
+      <div class="buttons">
+        <button id="rulesButton" type="button">RULES</button>
+        <button id="startButton" type="button">GO HUNTING</button>
+        <button id="audioButton" type="button" onclick="toggleAudio()">
+          AUDIO
+        </button>
+      </div>
     </div>
-    <div class="buttons">
-      <button  type="button">RULES</button>
-      <button  type="button">GO HUNTING</button>
-      <button type="button">AUDIO</button>
-    </div>
-
+    <audio id="mainAudio" loop>
+      <source src="assets/sounds/forest-ambiance.mp3" type="audio/mpeg" />
+    </audio>
     <script src="script.js"></script>
     <script src="enemies.js"></script>
   </body>
 </html>
-
-<!-- TODO: chrome is shit and doesnt autoplay apparently. either create a
-           button to play audio or start learning iframe. 
-  <div>
-  <audio id="forestAmbiance" controls loop autoplay>
-    <source src="../assets/sounds/forest-ambiance.mp3" type="audio/mpeg" />
-  </audio>
-</div>
 
 
