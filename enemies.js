@@ -1,5 +1,15 @@
 // REMEMBER TO LINK TO HTML
 
-/* class gameEnemy {
-    constructor{enemyMoveSpeed,}
-} */
+ class enemy {
+    constructor(){
+
+    }
+} 
+
+
+
+
+
+function spawnEnemy(){
+    
+}
