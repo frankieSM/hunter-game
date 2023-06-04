@@ -1,31 +1,29 @@
 const rulesButton = document.querySelector("#rulesButton");
 const startButton = document.querySelector("#startButton");
 const audioButton = document.querySelector("#audioButton");
-
-rulesButton.addEventListener("click", showRules);
-startButton.addEventListener("click", startGame);
-audioButton.addEventListener("click", toggleAudio);
+const menu = document.querySelector("#mainMenu");
 
 function clearMenu() {
-  let menu = document.querySelector("#mainMenu");
   menu.remove();
 }
 
-function addBackButton(){
+function addBackButton(element){
     let backButton = document.createElement('button');
     backButton.textContent = 'BACK TO MAIN MENU';
     backButton.classList.add('backButtons')
     document.body.append(backButton);
-    backButton.addEventListener("click", ()=>{
-        let menu = document.querySelector("#mainMenu");
+    backButton.onclick = () => {
         document.body.append(menu);
-    }) 
+        element.remove();
+        backButton.remove();
+    }
 
 } 
 
 function toggleMenu(){
-    /*TODO: i am almost certain i can reformat the clearMenu and addBackButton
-            into a toggle that would be way easier. needs more research.
+    /*TODO: the back button is FUCKED. gonna need functions that add/remove
+            the menu while also adding/removing the rules. maybe store them 
+            i think maybe just declare the rules and menu globally.
     */
 }
 
@@ -49,22 +47,12 @@ function showRules() {
   rules.style.textAlign = 'center';
   rules.style.color = 'rgb(69, 12, 12)';
 
-  document.body.append(rules)
-  addBackButton();
+  document.body.append(rules);
+  addBackButton(rules);
 }
 
-function startGame(){
-/*TODO: add eventListener for gun sound on canvas? that way no matter if they
-        miss or not they hear the sound.
-*/
-    let gameSpace = document.createElement('div');
-    let lives;
-    let score;
-}
-
-//TODO: this works! but it sucks. being stuck at one volume BLOWS. fix later.
+//TODO: this works! but it sucks. being stuck at one volume BLOWS.
 function toggleAudio(){
-    clearMenu();
     const audio = document.getElementById("mainAudio");
     if(audio.paused){
         audio.play();
@@ -72,3 +60,22 @@ function toggleAudio(){
         audio.pause();
     }
 }
+
+/*TODO: add eventListener for gun sound on canvas? that way no matter if they
+        miss or not they hear the sound.
+*/
+function startGame(){
+    const gameContainer = document.createElement('div');
+    gameContainer.setAttribute('id', 'gameContainer');
+    const lowerMenu = document.createElement('div');
+    lowerMenu.setAttribute('id', 'lowerMenu');
+    const gameTitle = document.createElement('h1');
+    gameTitle.setAttribute('id', 'gameTitle');
+    gameTitle.innerHTML = 'STILL NOT DUCK HUNT';
+    clearMenu();
+    document.body.append(gameTitle);
+    document.body.append(gameContainer);
+    document.body.append(lowerMenu);
+}
+
+
