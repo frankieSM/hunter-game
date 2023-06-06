@@ -1,41 +1,46 @@
-// REMEMBER TO LINK TO HTML
 
-const npc = newEnemy(450, 780)
+/* const npc = newEnemy(1440, 500);
+const randomNumber = Math.random();
+const gameContainer = document.getElementById("gameContainer");
 
-function newImage(url){
-  let image = document.createElement('img')
-  image.src = url
-  image.style.position = 'absolute'
-  document.body.append(image)
-  return image
+function newImage(url) {
+  let image = document.createElement("img");
+  image.src = url;
+  image.style.position = "absolute";
+  document.body.append(image);
+  return image;
 }
 
-function newEnemy(x, y){
-  let element = newImage('assets/images/bird.jpg')
-  element.style.zIndex = 1;
-   
-  let spawnSide = 'right';
+function newEnemy(x, y) {
+  let enemy = newImage("assets/images/bird.jpg");
+  enemy.style.zIndex = 1;
 
-    function moveEnemy(){
-      if(spawnSide === 'right'){
-        x -= 1
-      } else {
-        x += 1
-      }
-      element.style.left = x + 'px';
-      element.style.bottom = y + 'px';
+  let spawnSide = "right";
+
+  function moveEnemy() {
+    if (spawnSide === "right") {
+      enemy.classList.add('rightEnemy');
+      x -= 1;
+    } else {
+      enemy.classList.add('leftEnemy');
+      x += 1;
     }
-    setInterval(moveEnemy, 10)
+    enemy.style.left = x + "px";
+    enemy.style.bottom = y + "px";
+  }
+  setInterval(moveEnemy, 1);
 }
 
-
-
-
-
-
-
-
-
+function spawnEnemy() {
+  function getSpawnSide() {
+    let spawnSide;
+    if (randomNumber < 0.5) {
+      spawnSide = "left"; // maybe try and set this to just the coordinates ?
+    } else {
+      spawnSide = "right";
+    }
+  }
+}
 
 
 

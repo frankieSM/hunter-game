@@ -98,3 +98,13 @@ button {
   text-shadow: -2px -2px gold, 0 0 1em rgb(250, 250, 250),
     0 0 0em rgb(201, 186, 186);
 }
+
+.leftEnemy{
+  position: fixed;
+  left: -130px;
+}
+
+.rightEnemy{
+  position: fixed;
+  right: -130px;
+}
