@@ -14,4 +14,4 @@ CHALLENGES:
 
 - scoping issue with creating menu buttons
 - custom cursor on body, body element is NOT fullscreen by default.
-- 
+- scoping issues with everything actually.
