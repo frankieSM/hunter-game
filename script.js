@@ -64,9 +64,42 @@ function toggleAudio(){
 /*TODO: add eventListener for gun sound on canvas? that way no matter if they
         miss or not they hear the sound.
 */
+
+
+//////////////////////////////////////////////////////////
+const randomNumber = Math.random();
+
+
+function spawnEnemy(){
+    const enemy = document.createElement('img');
+    enemy.addEventListener('click', ()=> {
+        enemy.remove()
+    })
+    const gameDiv = document.getElementById("gameDiv"); //gameDiv id replaced gameContainer id. also may not need if gamediv is declared within start game function just select it fr fr.
+    var xCoord;
+    var yCoord = 500;
+    enemy.src = 'assets/images/bird.jpg';
+    enemy.style.position = 'absolute';
+
+    function getSpawnSide(){ //LEFT = -140px, RIGHT = 2550px
+        if(randomNumber < 0.5){
+            xCoord = 500
+        } else {
+            xCoord = 2000
+        }
+    }
+
+    getSpawnSide();
+    enemy.style.left = xCoord + "px";
+    enemy.style.bottom = yCoord + "px";
+    gameDiv.appendChild(enemy)
+}
+
+//////////////////////////////////////////////////////////
+
 function startGame(){
-    const gameContainer = document.createElement('div');
-    gameContainer.setAttribute('id', 'gameContainer');
+    const gameDiv = document.createElement('div');
+    gameDiv.setAttribute('id', 'gameDiv');
     const lowerMenu = document.createElement('div');
     lowerMenu.setAttribute('id', 'lowerMenu');
     const gameTitle = document.createElement('h1');
@@ -74,8 +107,9 @@ function startGame(){
     gameTitle.innerHTML = 'STILL NOT DUCK HUNT';
     clearMenu();
     document.body.append(gameTitle);
-    document.body.append(gameContainer);
+    document.body.append(gameDiv);
     document.body.append(lowerMenu);
+    spawnEnemy();
 }
 
 

@@ -1,5 +1,5 @@
 
-/* const npc = newEnemy(1440, 500);
+/* const npc = newEnemy(1440, 500); // THIS IS WHAT IS CREATING THE BIRD 
 const randomNumber = Math.random();
 const gameContainer = document.getElementById("gameContainer");
 
@@ -19,10 +19,8 @@ function newEnemy(x, y) {
 
   function moveEnemy() {
     if (spawnSide === "right") {
-      enemy.classList.add('rightEnemy');
       x -= 1;
     } else {
-      enemy.classList.add('leftEnemy');
       x += 1;
     }
     enemy.style.left = x + "px";

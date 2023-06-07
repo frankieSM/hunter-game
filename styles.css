@@ -58,7 +58,7 @@ button {
 }
 
 
-#gameContainer {
+#gameDiv {
   position: relative;
   width: 100%;
   height: 950px;
