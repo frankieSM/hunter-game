@@ -108,3 +108,16 @@ button {
   position: fixed;
   right: -130px;
 }
+
+.bg::before{
+  content: '';
+  background-image: url('assets/images/background1.jpg');
+  z-index: -1;
+  position: absolute;
+  background-size: cover;
+  top: 0;
+  left: 0;
+  background-repeat: none;
+  width: 100vw;
+  height: 100vh;
+}
