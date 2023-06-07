@@ -2,6 +2,8 @@ const rulesButton = document.querySelector("#rulesButton");
 const startButton = document.querySelector("#startButton");
 const audioButton = document.querySelector("#audioButton");
 const menu = document.querySelector("#mainMenu");
+let lives = 3;
+let score;
 
 function clearMenu() {
   menu.remove();
@@ -53,9 +55,6 @@ function toggleAudio(){
     }
 }
 
-/*TODO: add eventListener for gun sound on canvas? that way no matter if they
-        miss or not they hear the sound.
-*/
 ///////////////////////////////////////////////////////////
 function spawnEnemy() {
   var randomNumber = Math.random();
@@ -88,15 +87,15 @@ function spawnEnemy() {
     enemy.style.zIndex = 1;
     if (spawnSide === 'right') {
       xCoord -= 2; // increase value to change speed
-      if(xCoord <= -enemy.width){
+      if(xCoord <= -enemy.width){ //deletes enemy
         enemy.remove();
-        console.log('it works');
+        lives -= 1;
       }
     } else {
       xCoord += 2;
       if(xCoord >= gameDiv.clientWidth - enemy.width){
         enemy.remove();
-        console.log('it works');
+        lives -= 1;
       }
     }
     enemy.style.left = xCoord + 'px'; // updates the left position
@@ -113,6 +112,10 @@ function spawnEnemy() {
   function startGame() {
     const gameDiv = document.createElement('div');
     gameDiv.setAttribute('id', 'gameDiv');
+    gameDiv.addEventListener('click', () => {
+      const gunshot = new Audio('assets/sounds/gunshot.mp3');
+      gunshot.play();
+    });
     const lowerMenu = document.createElement('div');
     lowerMenu.setAttribute('id', 'lowerMenu');
     const gameTitle = document.createElement('h1');
@@ -122,7 +125,9 @@ function spawnEnemy() {
     document.body.append(gameTitle);
     document.body.append(gameDiv);
     document.body.append(lowerMenu);
-    spawnEnemy();
+  
+    setTimeout(spawnEnemy, 3000);
+    setInterval(spawnEnemy, 1000); 
   }
 
 
