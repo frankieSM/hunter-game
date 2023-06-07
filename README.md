@@ -15,3 +15,6 @@ CHALLENGES:
 - scoping issue with creating menu buttons
 - custom cursor on body, body element is NOT fullscreen by default.
 - scoping issues with everything actually.
+- dragging enemy img
+- randomizing spawn side/height
+- event listener to delete the enemy and take a life

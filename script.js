@@ -60,7 +60,7 @@ function toggleAudio(){
 function spawnEnemy() {
   var randomNumber = Math.random();
   const enemy = document.createElement('img');
-
+  enemy.setAttribute('draggable', false)
   enemy.addEventListener('click', () => {
     enemy.remove();
   });
@@ -88,8 +88,16 @@ function spawnEnemy() {
     enemy.style.zIndex = 1;
     if (spawnSide === 'right') {
       xCoord -= 2; // increase value to change speed
+      if(xCoord <= -enemy.width){
+        enemy.remove();
+        console.log('it works');
+      }
     } else {
       xCoord += 2;
+      if(xCoord >= gameDiv.clientWidth - enemy.width){
+        enemy.remove();
+        console.log('it works');
+      }
     }
     enemy.style.left = xCoord + 'px'; // updates the left position
   }
