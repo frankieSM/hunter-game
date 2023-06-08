@@ -1,6 +1,6 @@
 /// FOR TESTING PURPOSES ONLY
 /// CURRENTLY TESTING: 
-//                     GAME OVER LOGIC
+//                     GAME OVER LOGIC & GAME MENU CREATION
 
 
 function gameOver(){
@@ -17,4 +17,23 @@ function gameOver(){
 }
 
 
-let gameRunning = setInterval(spawnEnemy, 1000);
+function addMenu(){
+  const lowerMenu = document.getElementById('lowerMenu');
+
+  const scoreCounter = document.createElement('p');
+  scoreCounter.innerHTML = 'SCORE: ' + score;
+
+  const audioButton = document.createElement('button');
+  audioButton.innerHTML = 'TOGGLE AUDIO';
+  audioButton.onclick = toggleAudio
+
+  for(let i=0; i < 5; i++){
+    const heart = document.createElement('img');
+    heart.src = 'assets/images/heart.png';
+    
+    lowerMenu.appendChild(heart);
+    lowerMenu.appendChild(scoreCounter);
+    lowerMenu.appendChild(audioButton);
+   
+  }
+}

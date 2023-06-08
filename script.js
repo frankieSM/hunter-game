@@ -26,7 +26,7 @@ function showRules() {
   clearMenu();
   let rules = document.createElement("div");
   rules.innerHTML =
-    "RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES";
+    "MUTANT BIRDS ARE ATTACKING YOUR LAND HUNTER, DESTROY THEM AT ALL COSTS. 'SHOOT' THE BIRDS BEFORE THEY REACH THEIR DESTINATION OR HUMANTIY WILL BE DOOMED (GAME OVER). YOU HAVE 5 CHANCES. GOOD LUCK AND REMEMBER TO HAVE FUN AND BE YOURSELF.";
   rules.style.backgroundColor = "tan";
   rules.style.width = "80%";
   rules.style.margin = "auto";
@@ -49,6 +49,7 @@ function showRules() {
 //TODO: this works! but it sucks. being stuck at one volume BLOWS.
 function toggleAudio() {
   const audio = document.getElementById("mainAudio");
+  audio.volume = 0.1;
   if (audio.paused) {
     audio.play();
   } else {
@@ -56,17 +57,31 @@ function toggleAudio() {
   }
 }
 
-function addHealthBar(){
-  const lowerMenu = document.getElementById('lowerMenu')
+function updateScoreCounter() {
+  const scoreCounter = document.getElementById('scoreCounter');
+  scoreCounter.innerHTML = 'SCORE: ' + score;
+}
+
+function addMenu(){
+  const lowerMenu = document.getElementById('lowerMenu');
+
+  const scoreCounter = document.createElement('div');
+  scoreCounter.innerHTML = 'SCORE: ' + score;
+  scoreCounter.id = 'scoreCounter';
+  scoreCounter.style.fontSize = '50px';
+
+  const audioButton = document.createElement('button');
+  audioButton.innerHTML = 'TOGGLE AMBIANCE';
+  audioButton.onclick = toggleAudio
 
   for(let i=0; i < 5; i++){
     const heart = document.createElement('img');
     heart.src = 'assets/images/heart.png';
-    heart.style.width = 50 + 'px'
-    heart.style.height = 50 + 'px'
-    heart.style.margin = 0
-    lowerMenu.appendChild(heart)
+    
+    lowerMenu.appendChild(heart);
   }
+  lowerMenu.appendChild(scoreCounter);
+  lowerMenu.appendChild(audioButton);
 }
 
   function gunshotSounds(){
@@ -79,6 +94,8 @@ function addHealthBar(){
     const gameTitle = document.querySelector('#gameTitle');
     const gameDiv = document.querySelector('#gameDiv');
     const lowerMenu = document.querySelector('#lowerMenu');
+    const gameOverScreen = document.createElement('div');
+    gameOverScreen.innerHTML
   
     gameDiv.removeEventListener('click', gunshotSounds);
     clearInterval(gameRunning)
@@ -95,6 +112,7 @@ function enemyHit(event){
     enemy.shot = true;
     enemy.remove();
     score += 100;
+    updateScoreCounter();
   }
 }
 
@@ -185,7 +203,7 @@ function startGame() {
   document.body.append(gameDiv);
   document.body.append(lowerMenu);
 
-  addHealthBar()
+  addMenu();
 
   setTimeout(spawnEnemy, 3000); //pause after starting
   gameRunning = setInterval(spawnEnemy, 1000); //continuously spawn enemies;

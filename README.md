@@ -4,12 +4,6 @@ To Be Continued...>
 -------------------------
 Background music: https://freesound.org/people/lextrack/sounds/272417/
 
-    ADDITIONAL RESOURCES
--------------------------
-
-Creating a <canvas> in HTML: https://www.youtube.com/watch?v=EO6OkltgudE
-
-
 CHALLENGES:
 
 - scoping issue with creating menu buttons
@@ -20,3 +14,5 @@ CHALLENGES:
 - event listener to delete the enemy and take a life
 - lives decreasing infinitely for one enemy
 - having to stop things by naming them instead of them being anonymous and inline
+- more scoping issues...
+- lives still lost for shot enemies
