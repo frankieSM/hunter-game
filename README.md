@@ -19,3 +19,4 @@ CHALLENGES:
 - randomizing spawn side/height
 - event listener to delete the enemy and take a life
 - lives decreasing infinitely for one enemy
+- having to stop things by naming them instead of them being anonymous and inline

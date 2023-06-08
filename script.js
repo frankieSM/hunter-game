@@ -55,6 +55,38 @@ function toggleAudio() {
   }
 }
 
+function addHealthBar(){
+  const lowerMenu = document.getElementById('lowerMenu')
+
+  for(let i=0; i < 5; i++){
+    const heart = document.createElement('img');
+    heart.src = 'assets/images/heart.png';
+    heart.style.width = 50 + 'px'
+    heart.style.height = 50 + 'px'
+    heart.style.margin = 0
+    lowerMenu.appendChild(heart)
+  }
+}
+
+  function gunshotSounds(){
+    const gunshot = new Audio("assets/sounds/gunshot.mp3");
+    gunshot.volume = 0.1;
+    gunshot.play();
+  }
+
+  function gameOver(){
+  const gameTitle = document.querySelector('#gameTitle');
+  const gameDiv = document.querySelector('#gameDiv');
+  const lowerMenu = document.querySelector('#lowerMenu');
+
+  gameDiv.removeEventListener('click', gunshotSounds);
+
+  gameTitle.remove()
+  gameDiv.remove()
+  lowerMenu.remove()
+}
+
+
 ///////////////////////////////////////////////////////////
 function spawnEnemy() {
   var randomNumber = Math.random();
@@ -97,7 +129,7 @@ function spawnEnemy() {
           console.log(lives);
 
           if (lives === 0) {
-            console.log("game over");
+            gameOver();
           }
         }
       } else {
@@ -109,7 +141,7 @@ function spawnEnemy() {
           console.log(lives);
 
           if (lives === 0) {
-            console.log("game over");
+            gameOver();
           }
         }
       }
@@ -129,20 +161,20 @@ function spawnEnemy() {
 function startGame() {
   const gameDiv = document.createElement("div");
   gameDiv.setAttribute("id", "gameDiv");
-  gameDiv.addEventListener("click", () => {
-    const gunshot = new Audio("assets/sounds/gunshot.mp3");
-    gunshot.volume = 0.2;
-    gunshot.play();
-  });
+  gameDiv.addEventListener("click", gunshotSounds);
   const lowerMenu = document.createElement("div");
   lowerMenu.setAttribute("id", "lowerMenu");
   const gameTitle = document.createElement("h1");
   gameTitle.setAttribute("id", "gameTitle");
   gameTitle.innerHTML = "STILL NOT DUCK HUNT";
+
   clearMenu();
+
   document.body.append(gameTitle);
   document.body.append(gameDiv);
   document.body.append(lowerMenu);
+
+  addHealthBar()
 
   setTimeout(spawnEnemy, 3000); //pause after starting
   setInterval(spawnEnemy, 1000); //continuously spawn enemies
