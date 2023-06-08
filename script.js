@@ -2,132 +2,146 @@ const rulesButton = document.querySelector("#rulesButton");
 const startButton = document.querySelector("#startButton");
 const audioButton = document.querySelector("#audioButton");
 const menu = document.querySelector("#mainMenu");
-let lives = 3;
+let lives = 5;
 let score;
 
 function clearMenu() {
   menu.remove();
 }
 
-function addBackButton(element){
-    let backButton = document.createElement('button');
-    backButton.textContent = 'BACK TO MAIN MENU';
-    backButton.classList.add('backButtons')
-    document.body.append(backButton);
-    backButton.onclick = () => {
-        document.body.append(menu);
-        element.remove();
-        backButton.remove();
-    }
-
-} 
+function addBackButton(element) {
+  let backButton = document.createElement("button");
+  backButton.textContent = "BACK TO MAIN MENU";
+  backButton.classList.add("backButtons");
+  document.body.append(backButton);
+  backButton.onclick = () => {
+    document.body.append(menu);
+    element.remove();
+    backButton.remove();
+  };
+}
 
 function showRules() {
   clearMenu();
-  let rules = document.createElement('div');
+  let rules = document.createElement("div");
   rules.innerHTML =
     "RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES RULES";
-  rules.style.backgroundColor = 'tan';
-  rules.style.width = '80%';
-  rules.style.margin = 'auto';
-  rules.style.border = '5px solid';
-  rules.style.borderColor = 'rgb(102, 30, 30)';
-  rules.style.borderRadius = '50px';
-  rules.style.position = 'relative';
-  rules.style.top = '200px';
+  rules.style.backgroundColor = "tan";
+  rules.style.width = "80%";
+  rules.style.margin = "auto";
+  rules.style.border = "5px solid";
+  rules.style.borderColor = "rgb(102, 30, 30)";
+  rules.style.borderRadius = "50px";
+  rules.style.position = "relative";
+  rules.style.top = "200px";
 
-  rules.style.fontFamily = 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif';
-  rules.style.fontSize = '30px';
-  rules.style.textAlign = 'center';
-  rules.style.color = 'rgb(69, 12, 12)';
+  rules.style.fontFamily =
+    'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif';
+  rules.style.fontSize = "30px";
+  rules.style.textAlign = "center";
+  rules.style.color = "rgb(69, 12, 12)";
 
   document.body.append(rules);
   addBackButton(rules);
 }
 
 //TODO: this works! but it sucks. being stuck at one volume BLOWS.
-function toggleAudio(){
-    const audio = document.getElementById("mainAudio");
-    if(audio.paused){
-        audio.play();
-    } else {
-        audio.pause();
-    }
+function toggleAudio() {
+  const audio = document.getElementById("mainAudio");
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
 }
 
 ///////////////////////////////////////////////////////////
 function spawnEnemy() {
   var randomNumber = Math.random();
-  const enemy = document.createElement('img');
-  enemy.setAttribute('draggable', false)
-  enemy.addEventListener('click', () => {
+  const enemy = document.createElement("img");
+  enemy.setAttribute("draggable", false);
+  enemy.addEventListener("click", () => {
     enemy.remove();
   });
 
-  const gameDiv = document.getElementById('gameDiv');
+  const gameDiv = document.getElementById("gameDiv");
   var xCoord;
-  var yCoord = Math.floor(Math.random() * 999) + 1;
+  var yCoord = Math.floor(Math.random() * 900) + 1;
   const spawnSide = getSpawnSide();
 
-  enemy.src = 'assets/images/bird.jpg';
-  enemy.style.position = 'absolute';
+  enemy.src = "assets/images/bird1.png";
+  enemy.style.position = "absolute";
 
   function getSpawnSide() {
     //LEFT = -140px, RIGHT = 2550px
     if (randomNumber < 0.5) {
       xCoord = -140;
-      return 'left';
+      return "left";
     } else {
       xCoord = 2550;
-      return 'right';
+      return "right";
     }
   }
 
   function moveEnemy() {
     enemy.style.zIndex = 1;
-    if (spawnSide === 'right') {
-      xCoord -= 2; // increase value to change speed
-      if(xCoord <= -enemy.width){ //deletes enemy
-        enemy.remove();
-        lives -= 1;
-      }
-    } else {
-      xCoord += 2;
-      if(xCoord >= gameDiv.clientWidth - enemy.width){
-        enemy.remove();
-        lives -= 1;
+
+    if (!enemy.hit) {
+      if (spawnSide === "right") {
+        xCoord -= 2;
+        if (xCoord <= -enemy.width) {
+          enemy.hit = true; //adding method to 'enemy' object.
+          enemy.remove();
+          lives -= 1;
+          console.log(lives);
+
+          if (lives === 0) {
+            console.log("game over");
+          }
+        }
+      } else {
+        xCoord += 2;
+        if (xCoord >= gameDiv.clientWidth - enemy.width) {
+          enemy.hit = true;
+          enemy.remove();
+          lives -= 1;
+          console.log(lives);
+
+          if (lives === 0) {
+            console.log("game over");
+          }
+        }
       }
     }
-    enemy.style.left = xCoord + 'px'; // updates the left position
+
+    enemy.style.left = xCoord + "px";
   }
 
   getSpawnSide();
-  enemy.style.left = xCoord + 'px';
-  enemy.style.bottom = yCoord + 'px';
+  enemy.style.left = xCoord + "px";
+  enemy.style.bottom = yCoord + "px";
   gameDiv.appendChild(enemy);
 
-  setInterval(moveEnemy, 1); // Start the enemy movement
+  setInterval(moveEnemy, 1);
 }
-  //////////////////////////////////////////////////////////////////
-  function startGame() {
-    const gameDiv = document.createElement('div');
-    gameDiv.setAttribute('id', 'gameDiv');
-    gameDiv.addEventListener('click', () => {
-      const gunshot = new Audio('assets/sounds/gunshot.mp3');
-      gunshot.play();
-    });
-    const lowerMenu = document.createElement('div');
-    lowerMenu.setAttribute('id', 'lowerMenu');
-    const gameTitle = document.createElement('h1');
-    gameTitle.setAttribute('id', 'gameTitle');
-    gameTitle.innerHTML = 'STILL NOT DUCK HUNT';
-    clearMenu();
-    document.body.append(gameTitle);
-    document.body.append(gameDiv);
-    document.body.append(lowerMenu);
-  
-    setTimeout(spawnEnemy, 3000);
-    setInterval(spawnEnemy, 1000); 
-  }
+//////////////////////////////////////////////////////////////////
+function startGame() {
+  const gameDiv = document.createElement("div");
+  gameDiv.setAttribute("id", "gameDiv");
+  gameDiv.addEventListener("click", () => {
+    const gunshot = new Audio("assets/sounds/gunshot.mp3");
+    gunshot.play();
+  });
+  const lowerMenu = document.createElement("div");
+  lowerMenu.setAttribute("id", "lowerMenu");
+  const gameTitle = document.createElement("h1");
+  gameTitle.setAttribute("id", "gameTitle");
+  gameTitle.innerHTML = "STILL NOT DUCK HUNT";
+  clearMenu();
+  document.body.append(gameTitle);
+  document.body.append(gameDiv);
+  document.body.append(lowerMenu);
 
-
+  setTimeout(spawnEnemy, 3000); //pause after starting
+  setInterval(spawnEnemy, 1000); //continuously spawn enemies
+}

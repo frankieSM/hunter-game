@@ -18,3 +18,4 @@ CHALLENGES:
 - dragging enemy img
 - randomizing spawn side/height
 - event listener to delete the enemy and take a life
+- lives decreasing infinitely for one enemy

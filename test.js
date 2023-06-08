@@ -1,6 +1,6 @@
 /// FOR TESTING PURPOSES ONLY
 /// CURRENTLY TESTING: 
-//                   SPAWNING AN ENEMY WITHIN GAME DIV ON A RANDOM SIDE. NO RANDOM HEIGHT YET
+//                     
 
 function spawnEnemy() {
     var randomNumber = Math.random();
@@ -33,15 +33,15 @@ function spawnEnemy() {
       enemy.style.zIndex = 1;
       if (spawnSide === 'right') {
         xCoord -= 2; // increase value to change speed
-        if(xCoord <= -enemy.width){
+        if(xCoord <= -enemy.width){ //deletes enemy
           enemy.remove();
-          console.log('it works');
+          lives -= 1;
         }
       } else {
         xCoord += 2;
         if(xCoord >= gameDiv.clientWidth - enemy.width){
           enemy.remove();
-          console.log('it works');
+          lives -= 1;
         }
       }
       enemy.style.left = xCoord + 'px'; // updates the left position
@@ -52,5 +52,5 @@ function spawnEnemy() {
     enemy.style.bottom = yCoord + 'px';
     gameDiv.appendChild(enemy);
   
-    setInterval(moveEnemy, 1); // Start the enemy movement
+    setInterval(moveEnemy, 1);
   }
