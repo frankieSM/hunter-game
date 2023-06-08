@@ -121,3 +121,10 @@ button {
   width: 100vw;
   height: 100vh;
 }
+
+.gameOver{
+  margin: 0;
+  height: 100%;
+  position: relative;
+  border-style: 5px solid black;
+}

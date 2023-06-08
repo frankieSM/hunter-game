@@ -28,7 +28,7 @@ function spawnEnemy() {
         return 'right';
       }
     }
-  
+
     function moveEnemy() {
       enemy.style.zIndex = 1;
       if (spawnSide === 'right') {

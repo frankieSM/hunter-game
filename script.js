@@ -3,7 +3,7 @@ const startButton = document.querySelector("#startButton");
 const audioButton = document.querySelector("#audioButton");
 const menu = document.querySelector("#mainMenu");
 let lives = 5;
-let score;
+let score = 0;
 
 function clearMenu() {
   menu.remove();
@@ -62,6 +62,7 @@ function spawnEnemy() {
   enemy.setAttribute("draggable", false);
   enemy.addEventListener("click", () => {
     enemy.remove();
+    score += 100;
   });
 
   const gameDiv = document.getElementById("gameDiv");
@@ -130,6 +131,7 @@ function startGame() {
   gameDiv.setAttribute("id", "gameDiv");
   gameDiv.addEventListener("click", () => {
     const gunshot = new Audio("assets/sounds/gunshot.mp3");
+    gunshot.volume = 0.2;
     gunshot.play();
   });
   const lowerMenu = document.createElement("div");
