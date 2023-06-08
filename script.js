@@ -4,6 +4,7 @@ const audioButton = document.querySelector("#audioButton");
 const menu = document.querySelector("#mainMenu");
 let lives = 5;
 let score = 0;
+let gameRunning;
 
 function clearMenu() {
   menu.remove();
@@ -75,15 +76,26 @@ function addHealthBar(){
   }
 
   function gameOver(){
-  const gameTitle = document.querySelector('#gameTitle');
-  const gameDiv = document.querySelector('#gameDiv');
-  const lowerMenu = document.querySelector('#lowerMenu');
+    const gameTitle = document.querySelector('#gameTitle');
+    const gameDiv = document.querySelector('#gameDiv');
+    const lowerMenu = document.querySelector('#lowerMenu');
+  
+    gameDiv.removeEventListener('click', gunshotSounds);
+    clearInterval(gameRunning)
+  
+    gameTitle.remove()
+    gameDiv.remove()
+    lowerMenu.remove()
+  }
+  
 
-  gameDiv.removeEventListener('click', gunshotSounds);
-
-  gameTitle.remove()
-  gameDiv.remove()
-  lowerMenu.remove()
+function enemyHit(event){
+  const enemy = event.target;
+  if(!enemy.shot){
+    enemy.shot = true;
+    enemy.remove();
+    score += 100;
+  }
 }
 
 
@@ -92,10 +104,8 @@ function spawnEnemy() {
   var randomNumber = Math.random();
   const enemy = document.createElement("img");
   enemy.setAttribute("draggable", false);
-  enemy.addEventListener("click", () => {
-    enemy.remove();
-    score += 100;
-  });
+  enemy.shot = false; //tracks bird being shot
+  enemy.addEventListener("click", enemyHit)
 
   const gameDiv = document.getElementById("gameDiv");
   var xCoord;
@@ -104,6 +114,7 @@ function spawnEnemy() {
 
   enemy.src = "assets/images/bird1.png";
   enemy.style.position = "absolute";
+  
 
   function getSpawnSide() {
     //LEFT = -140px, RIGHT = 2550px
@@ -119,10 +130,10 @@ function spawnEnemy() {
   function moveEnemy() {
     enemy.style.zIndex = 1;
 
-    if (!enemy.hit) {
+    if (!enemy.hit && !enemy.shot) { //added enemy.shot to check if hit edge and shot
       if (spawnSide === "right") {
         xCoord -= 2;
-        if (xCoord <= -enemy.width) {
+        if (xCoord <= - enemy.width) { //
           enemy.hit = true; //adding method to 'enemy' object.
           enemy.remove();
           lives -= 1;
@@ -177,5 +188,5 @@ function startGame() {
   addHealthBar()
 
   setTimeout(spawnEnemy, 3000); //pause after starting
-  setInterval(spawnEnemy, 1000); //continuously spawn enemies
+  gameRunning = setInterval(spawnEnemy, 1000); //continuously spawn enemies;
 }

@@ -9,8 +9,12 @@ function gameOver(){
   const lowerMenu = document.querySelector('#lowerMenu');
 
   gameDiv.removeEventListener('click', gunshotSounds);
+  clearInterval(gameRunning)
 
   gameTitle.remove()
   gameDiv.remove()
   lowerMenu.remove()
 }
+
+
+let gameRunning = setInterval(spawnEnemy, 1000);

@@ -4,14 +4,15 @@
   enemy.setAttribute("draggable", false);
   enemy.addEventListener("click", () => {
     enemy.remove();
+    score += 100;
   });
 
   const gameDiv = document.getElementById("gameDiv");
   var xCoord;
-  var yCoord = Math.floor(Math.random() * 999) + 1;
+  var yCoord = Math.floor(Math.random() * 900) + 1;
   const spawnSide = getSpawnSide();
 
-  enemy.src = "assets/images/bird.jpg";
+  enemy.src = "assets/images/bird1.png";
   enemy.style.position = "absolute";
 
   function getSpawnSide() {
@@ -34,11 +35,11 @@
         if (xCoord <= -enemy.width) {
           enemy.hit = true; //adding method to 'enemy' object.
           enemy.remove();
-          lives -= 1;
+         // lives -= 1;
           console.log(lives);
 
           if (lives === 0) {
-            console.log("game over");
+            gameOver();
           }
         }
       } else {
@@ -46,11 +47,11 @@
         if (xCoord >= gameDiv.clientWidth - enemy.width) {
           enemy.hit = true;
           enemy.remove();
-          lives -= 1;
+        //  lives -= 1;
           console.log(lives);
 
           if (lives === 0) {
-            console.log("game over");
+            gameOver();
           }
         }
       }
