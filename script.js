@@ -2,6 +2,7 @@ const rulesButton = document.querySelector("#rulesButton");
 const startButton = document.querySelector("#startButton");
 const audioButton = document.querySelector("#audioButton");
 const menu = document.querySelector("#mainMenu");
+const randomSpeed = Math.floor(Math.random() * 5) + 1;;
 let lives = 5;
 let score = 0;
 let gameRunning;
@@ -46,7 +47,6 @@ function showRules() {
   addBackButton(rules);
 }
 
-//TODO: this works! but it sucks. being stuck at one volume BLOWS.
 function toggleAudio() {
   const audio = document.getElementById("mainAudio");
   audio.volume = 0.1;
@@ -163,7 +163,7 @@ function spawnEnemy() {
 
     if (!enemy.hit && !enemy.shot) { //added enemy.shot to check if hit edge and shot
       if (spawnSide === "right") {
-        xCoord -= 2;
+        xCoord -= 3; //random speed ?
         if (xCoord <= - enemy.width) { //
           enemy.hit = true; //adding method to 'enemy' object.
           enemy.remove();
@@ -175,7 +175,7 @@ function spawnEnemy() {
           }
         }
       } else {
-        xCoord += 2;
+        xCoord += 3;
         if (xCoord >= gameDiv.clientWidth - enemy.width) {
           enemy.hit = true;
           enemy.remove();
