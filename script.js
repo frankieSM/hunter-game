@@ -62,6 +62,11 @@ function updateScoreCounter() {
   scoreCounter.innerHTML = 'SCORE: ' + score;
 }
 
+function updateLivesCounter() {
+  const heart = document.getElementById('heart');
+  heart.remove()
+}
+
 function addMenu(){
   const lowerMenu = document.getElementById('lowerMenu');
 
@@ -76,6 +81,7 @@ function addMenu(){
 
   for(let i=0; i < 5; i++){
     const heart = document.createElement('img');
+    heart.setAttribute('id', 'heart');
     heart.src = 'assets/images/heart.png';
     
     lowerMenu.appendChild(heart);
@@ -155,8 +161,8 @@ function spawnEnemy() {
           enemy.hit = true; //adding method to 'enemy' object.
           enemy.remove();
           lives -= 1;
+          updateLivesCounter(); //
           console.log(lives);
-
           if (lives === 0) {
             gameOver();
           }
@@ -167,6 +173,7 @@ function spawnEnemy() {
           enemy.hit = true;
           enemy.remove();
           lives -= 1;
+          updateLivesCounter(); //
           console.log(lives);
 
           if (lives === 0) {
