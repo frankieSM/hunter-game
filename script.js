@@ -101,7 +101,9 @@ function addMenu(){
     const gameDiv = document.querySelector('#gameDiv');
     const lowerMenu = document.querySelector('#lowerMenu');
     const gameOverScreen = document.createElement('div');
-    gameOverScreen.innerHTML
+    gameOverScreen.classList.add('gameTitleText')
+    gameOverScreen.innerHTML = 'FINAL SCORE: ' + score;
+    gameOverScreen.style.marginTop = '500px'
   
     gameDiv.removeEventListener('click', gunshotSounds);
     clearInterval(gameRunning)
@@ -109,6 +111,10 @@ function addMenu(){
     gameTitle.remove()
     gameDiv.remove()
     lowerMenu.remove()
+
+    document.body.append(gameOverScreen);
+    addBackButton(gameOverScreen);
+
   }
   
 
