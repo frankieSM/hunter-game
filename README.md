@@ -1,4 +1,6 @@
-To Be Continued...>
+
+
+The game "Hunter" aka "Totally NOT Duck Hunt" is a simple game requiring players to click on multiple birds, accumulating score and trying not to lose all 5 of their lives. While it may not be clear and present, this game was inspired by the classic Nintendo game "Duck Hunt". However, instead of round based gameplay, the gameplay loop only ends when the full lives are lost. The game functions around mostly appending and removing elements in the DOM such as the menu as well as the birds. The birds will despawn when hitting the set boundary as well as after being hit by the player. I got the idea from this game after working through the class' game assignment after working out the mechanics of removing an item on a click as well as creating moving enemies. I figured that surely i would be able to make a simple game with these easy mechanics. I was wrong. The game works mostly as intended with the slight bug of having to actually reload the window instead of being able to return to the menu and start again after losing. If trying to restart the lives will be lost from rapidly from seemingly invisible birds. Not sure how to correct yet but it at least almost works.
 
         CREDITS
 -------------------------

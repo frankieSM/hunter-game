@@ -26,10 +26,10 @@ function showRules() {
   clearMenu();
   let rules = document.createElement("div");
   rules.innerHTML =
-    "MUTANT BIRDS ARE ATTACKING YOUR LAND HUNTER, DESTROY THEM AT ALL COSTS. 'SHOOT' THE BIRDS BEFORE THEY REACH THEIR DESTINATION OR HUMANTIY WILL BE DOOMED (GAME OVER). YOU HAVE 5 CHANCES. GOOD LUCK AND REMEMBER TO HAVE FUN AND BE YOURSELF.";
+    "MUTANT BIRDS ARE ATTACKING YOUR LAND HUNTER, DESTROY THEM AT ALL COSTS. 'SHOOT' THE BIRDS BEFORE THEY REACH THEIR DESTINATION OR HUMANITY WILL BE LOST (GAME OVER). YOU HAVE 5 CHANCES. GOOD LUCK AND REMEMBER TO HAVE FUN AND BE YOURSELF.";
   rules.style.backgroundColor = "tan";
   rules.style.width = "80%";
-  rules.style.margin = "auto";
+  rules.style.margin = 'auto';
   rules.style.border = "5px solid";
   rules.style.borderColor = "rgb(102, 30, 30)";
   rules.style.borderRadius = "50px";
@@ -38,7 +38,7 @@ function showRules() {
 
   rules.style.fontFamily =
     'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif';
-  rules.style.fontSize = "30px";
+  rules.style.fontSize = "50px";
   rules.style.textAlign = "center";
   rules.style.color = "rgb(69, 12, 12)";
 
@@ -114,7 +114,8 @@ function addMenu(){
 
     document.body.append(gameOverScreen);
     addBackButton(gameOverScreen);
-
+    lives = 5;
+    score = 0;
   }
   
 
